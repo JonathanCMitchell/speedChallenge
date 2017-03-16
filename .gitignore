@@ -3,3 +3,4 @@
 /FlowNet/
 /node_modules/
 *.jpg
+*.ipynb_checkpoints
