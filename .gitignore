@@ -5,3 +5,5 @@
 *.jpg
 *.ipynb_checkpoints
 *.h5
+__pycache__
+CustomLayers.py
