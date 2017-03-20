@@ -6,15 +6,13 @@ created drivinglog.csv with ['image_path', 'time', 'speed'] columns
 
 Given ground_truth data in drive.json with [time, speed] wrapped in an array
 
-Two methods:
+Approaches:
 1) Nvidia Model: PilotNet based implementation that compares the differences between both images and sends that through a network and performs regression based on the image differences
 2) DeepVO: AlexNet like implementation that performs parallel convolutions on two images and them merges them later in the pipeline to extract special features between them
 
-* I grabbed the model from this paper: https://arxiv.org/pdf/1611.06069.pdf
+* I grabbed the DeepVO model from this paper: https://arxiv.org/pdf/1611.06069.pdf
 
-It was unclear exactly how it was being implemented so I reached out to the author and he sent me detailed notes on his network model. This is because when AlexNet was being implemented they used two vectors of length 2048 as their fully connected layers, and then multi-merged (two by two merge) them to form a 4096 dense layer. However in this implementation we use 4096 vectors as our fully connected layers and then merge them (one way merge (4096 merge 4096) to form a 8192
-
-You can drag the train_vo.prototxt to this link: http://ethereon.github.io/netscope/#/editor
+* You can drag the train_vo.prototxt to this link: http://ethereon.github.io/netscope/#/editor
 to see the network model and all its intricacies
 
 3) DeepFlow: Large displacement optical flow with deep matching [link](http://www.cv-foundation.org/openaccess/content_iccv_2013/papers/Weinzaepfel_DeepFlow_Large_Displacement_2013_ICCV_paper.pdf)
@@ -22,9 +20,7 @@ to see the network model and all its intricacies
 
 4) Car Speed estimation using Visual Odometry
 
-Extra:
-TODO: [Keras Model Visualization] (https://keras.io/visualization/)
-
+### To run the jupyter notebooks (how I did it)
 Step1: Run VideoToDatasetAcquisition in an ipython notebook. Just shift click your way through it. This will create a driving.csv file and an IMG folder with all the images. I did this so we can work with image paths instead of the actual images, and to make life easier
 
 Step2: Run NvidiaModel to build the Nvidia model
@@ -34,11 +30,11 @@ Step2: Run NvidiaModel to build the Nvidia model
 
 ### TO TEST
 # Step 1: Run ./setupstuff.sh 
-* This will create the necessary folders (driving_test.csv, test_IMG, test_predict)
+* This will create the necessary folders (driving_test.csv, test_IMG, test_predict). Note you will create a test_predict folder which will be used later if you decide to create a video from the test data
 `./setupstuff.sh`
 
 # Step 2: python test.py
-* Go into test.py and specify the paths to video file, and the paths to the data (json) file
+* Go into test.py and specify the paths to video file, and the paths to the data (json) file. 
 * This will log out the MSE
 `python test.py`
 
@@ -47,6 +43,10 @@ Step2: Run NvidiaModel to build the Nvidia model
 * This will create a video to see how well the prediction works with the test set
 * Requires moviepy
 
+## Watch Video Here:
+<a href="http://www.youtube.com/embed/WofBjhlaWqQ
+" target="_blank"><img src="http://img.youtube.com/vi/WofBjhlaWqQ/0.jpg" 
+alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
 ### Architecture Design:
 ![architecture design](https://github.com/JonathanCMitchell/CarND-Behavioral-Cloning-P3/blob/Master/plots/Convnet%20Architecture%20Nvidia%20Model.jpg)
