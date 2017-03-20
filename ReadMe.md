@@ -38,6 +38,7 @@ Step2: Run NvidiaModel to build the Nvidia model
 * This will log out the MSE
 `python test.py`
 
+### Try changing between model-weights-F5.h5 and model-weights-F5.h5, I may have overfit F4 but F5 should work, F5 has (18) epochs and F4 has 30 epochs. 
 # step 3: makeVideo.py
 `python makeVideo.py`
 * This will create a video to see how well the prediction works with the test set
