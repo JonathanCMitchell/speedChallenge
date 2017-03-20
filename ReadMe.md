@@ -46,3 +46,25 @@ Step2: Run NvidiaModel to build the Nvidia model
 `python makeVideo.py`
 * This will create a video to see how well the prediction works with the test set
 * Requires moviepy
+
+
+### Architecture Design:
+![architecture design](https://github.com/JonathanCMitchell/CarND-Behavioral-Cloning-P3/blob/Master/plots/Convnet%20Architecture%20Nvidia%20Model.jpg)
+
+
+
+#### Twitter: [@jonathancmitch](https://twitter.com/jonathancmitch)
+#### Linkedin: [https://www.linkedin.com/in/jonathancmitchell](https://twitter.com/jonathancmitch)
+#### Github: [github.com/jonathancmitchell](github.com/jonathancmitchell)
+#### Medium: [https://medium.com/@jmitchell1991](https://medium.com/@jmitchell1991)
+
+
+#### Tools used
+* [Numpy](http://www.numpy.org/)
+* [OpenCV3](http://pandas.pydata.org/)
+* [Python](https://www.python.org/)
+* [Pandas](http://pandas.pydata.org/)
+* [Tensorflow](https://www.tensorflow.org/)
+* [Matplotlib](http://matplotlib.org/api/pyplot_api.html)
+* [SciKit-Learn](http://scikit-learn.org/)
+* [keras](http://keras.io)
