@@ -4,7 +4,7 @@
 /node_modules/
 *.jpg
 *.ipynb_checkpoints
-*.h5
+
 __pycache__
 CustomLayers.py
 batch_shuffle.ipynb
