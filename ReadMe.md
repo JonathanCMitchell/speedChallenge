@@ -18,7 +18,7 @@ to see the network model and all its intricacies
 3) DeepFlow: Large displacement optical flow with deep matching [link](http://www.cv-foundation.org/openaccess/content_iccv_2013/papers/Weinzaepfel_DeepFlow_Large_Displacement_2013_ICCV_paper.pdf)
 * I considered using DeepFlow but I found out about it literally the day before the project was due
 
-4) Car Speed estimation using Visual Odometry
+4) [Car Speed estimation using Visual Odometry](http://nicolovaligi.com/car-speed-estimation-windshield-camera.html)
 
 ### To run the jupyter notebooks (how I did it)
 Step1: Run VideoToDatasetAcquisition in an ipython notebook. Just shift click your way through it. This will create a driving.csv file and an IMG folder with all the images. I did this so we can work with image paths instead of the actual images, and to make life easier
