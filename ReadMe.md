@@ -52,7 +52,8 @@ alt="Watch Video Here" width="480" height="180" border="10" /></a>
 ### Architecture Design:
 ![architecture design](https://github.com/JonathanCMitchell/CarND-Behavioral-Cloning-P3/blob/Master/plots/Convnet%20Architecture%20Nvidia%20Model.jpg)
 
-
+## Next steps:
+Instead of feeding height x width x r,g,b into my network I will feed height x width x r,g,b x optical_flow_direction x optical_flow_magnitude into my network. TBD
 
 #### Twitter: [@jonathancmitch](https://twitter.com/jonathancmitch)
 #### Linkedin: [https://www.linkedin.com/in/jonathancmitchell](https://twitter.com/jonathancmitch)
