@@ -7,3 +7,12 @@
 *.h5
 __pycache__
 CustomLayers.py
+batch_shuffle.ipynb
+model-F1.h5
+model-F2.h5
+model-weights-F1.h5
+model-weights-F2.h5
+/test/
+SaveSequenceToVideo.ipynb
+NvidiaModel-OpticalFlow.ipynb
+Untitled*
