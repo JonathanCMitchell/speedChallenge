@@ -49,6 +49,12 @@ Step2: Run NvidiaModel to build the Nvidia model
 " target="_blank"><img src="http://img.youtube.com/vi/WofBjhlaWqQ/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
+## Optical Flow Overlay (I had way too much fun with this)
+Its a bit inaccurate because I performed the optical flow analysis on a smaller image and then resized it
+<a href="http://www.youtube.com/embed/https://youtu.be/2XOGCPJy3Rg
+" target="_blank"><img src="http://img.youtube.com/vi/https://youtu.be/2XOGCPJy3Rg/50.jpg" 
+alt="Watch Video Here" width="480" height="180" border="10" /></a>
+
 ### Architecture Design:
 ![architecture design](https://github.com/JonathanCMitchell/CarND-Behavioral-Cloning-P3/blob/Master/plots/Convnet%20Architecture%20Nvidia%20Model.jpg)
 
