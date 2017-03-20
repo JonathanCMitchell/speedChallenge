@@ -52,7 +52,7 @@ alt="Watch Video Here" width="480" height="180" border="10" /></a>
 ## Optical Flow Overlay (I had way too much fun with this)
 Its a bit inaccurate because I performed the optical flow analysis on a smaller image and then resized it
 <a href="http://www.youtube.com/embed/2XOGCPJy3Rg
-" target="_blank"><img src="http://img.youtube.com/vi/2XOGCPJy3Rg/10.jpg" 
+" target="_blank"><img src="http://img.youtube.com/vi/2XOGCPJy3Rg/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
 ### Architecture Design:
