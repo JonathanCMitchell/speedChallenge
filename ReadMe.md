@@ -51,15 +51,21 @@ alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
 ## Optical Flow Overlay (I had way too much fun with this)
 Its a bit inaccurate because I performed the optical flow analysis on a smaller image and then resized it
+This is using the Lucas-Kanade method for sparse optical flow analysis. The optical flow patterns are not inserted into the neural network for this exampe. 
 <a href="http://www.youtube.com/embed/2XOGCPJy3Rg
 " target="_blank"><img src="http://img.youtube.com/vi/2XOGCPJy3Rg/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
+
+Implement Dense optical flow analysis, get optical flow per each pixel. as seen in [this example](http://docs.opencv.org/3.1.0/d7/d8b/tutorial_py_lucas_kanade.html)
 
 ### Architecture Design:
 ![architecture design](https://github.com/JonathanCMitchell/CarND-Behavioral-Cloning-P3/blob/Master/plots/Convnet%20Architecture%20Nvidia%20Model.jpg)
 
 ## Next steps:
 Instead of feeding height x width x r,g,b into my network I will feed height x width x r,g,b x optical_flow_direction x optical_flow_magnitude into my network. TBD
+
+## Optical Flow Analysis:
+In NvidiaModel-OpticalFlowDense I changed up my generator to yield (66, 220, 5) images with (Height , Width, R, G, B, Ang, Mag) Angles and Magnitudes are a result of computing the Dense Optical Flow using Farneback parameters. I then threw this into my model and lets see what happens: 
 
 #### Twitter: [@jonathancmitch](https://twitter.com/jonathancmitch)
 #### Linkedin: [https://www.linkedin.com/in/jonathancmitchell](https://twitter.com/jonathancmitch)
