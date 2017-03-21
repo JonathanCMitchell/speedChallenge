@@ -40,12 +40,13 @@ alt="Watch Video Here" width="480" height="180" border="10" /></a>
 * `NvidiaModel-OpticalFlowDenseM2_8Epoch.ipynb` (this is how I trained the model and demonstrated the MSE, I also processed the dataset into a video which is shown in HTML inline, notes on how I did certain things are in here)
 
 
-# TEST:
+# TEST: (also found in test_suite.zip)
 * test.py
 * model.py
 * opticalHelpers.py
-* model-weights-RGBM5.h5
-* model-RGBM5.h5
+* model-weights-RGBM5.h5 (trained on 7 epochs, MSE ~ 10) 
+* model-weights-RGBM4.h5 (trained on 8 epochs, MSE ~ 10) (preloaded)
+* model-weights-RGBM3.h5 (trained on 16 epochs, MSE~2)
 * setupstuff.sh
 
 To test the model:
@@ -57,19 +58,10 @@ feel free to delete the ./data/predict folder after step 4
 * Requires moviepy
 
 
-Approaches:
-1) Nvidia Model: PilotNet based implementation that compares the differences between both images and sends that through a network and performs regression based on the image differences
-2) DeepVO: AlexNet like implementation that performs parallel convolutions on two images and them merges them later in the pipeline to extract special features between them
+model-weights-RGBM3 seems to be the best predictor, it's super easy to swap between them to see which you like the best. to swap change line 28 on test.py, and line13 on makeVideo.py to the desired weight. 
 
-* I grabbed the DeepVO model from this paper: https://arxiv.org/pdf/1611.06069.pdf
 
-* You can drag the train_vo.prototxt to this link: http://ethereon.github.io/netscope/#/editor
-to see the network model and all its intricacies
-
-3) DeepFlow: Large displacement optical flow with deep matching [link](http://www.cv-foundation.org/openaccess/content_iccv_2013/papers/Weinzaepfel_DeepFlow_Large_Displacement_2013_ICCV_paper.pdf)
-* I considered using DeepFlow but I found out about it literally the day before the project was due
-4) <strong>Dense Optical Flow network feeding. (FINAL PICK)</strong>
-
+<strong>Dense Optical Flow network feeding.</strong>
 
 ### Strategies:
 ## Dense optical flow network feeding explanation:
@@ -82,6 +74,17 @@ In NvidiaModel-OpticalFlowDense I changed up my generator to yield (66, 220, 5) 
 
 Method 2 rocks!! my MSE on validation was ~12 after 6 epochs of 20480 samples. Meaning I sent (12 * 2480 * 16) = 470k images into the network and my MSE dropped from 46.4 to 8.72. Compared to the other methods I was performing like Method 1 which dropped from 82.5996 MSE to 37.1 MSE with the same settings. Method 2 was the answer. I guess there was just too much noise when doing a simple image_1 (RGB) - image_2 (RGB). The network model held up because I converted the optical flow parameters to an RGB image. Here is a video of the results. 
 
+Other approaches: 
+1) Nvidia Model: PilotNet based implementation that compares the differences between both images and sends that through a network and performs regression based on the image differences
+2) DeepVO: AlexNet like implementation that performs parallel convolutions on two images and them merges them later in the pipeline to extract special features between them
+
+* I grabbed the DeepVO model from this paper: https://arxiv.org/pdf/1611.06069.pdf
+
+* You can drag the train_vo.prototxt to this link: http://ethereon.github.io/netscope/#/editor
+to see the network model and all its intricacies
+
+3) DeepFlow: Large displacement optical flow with deep matching [link](http://www.cv-foundation.org/openaccess/content_iccv_2013/papers/Weinzaepfel_DeepFlow_Large_Displacement_2013_ICCV_paper.pdf)
+* I considered using DeepFlow
 
 Implement Dense optical flow analysis, get optical flow per each pixel. as seen in [this example](http://docs.opencv.org/3.1.0/d7/d8b/tutorial_py_lucas_kanade.html)
 
@@ -106,3 +109,5 @@ Implement Dense optical flow analysis, get optical flow per each pixel. as seen 
 * [Matplotlib](http://matplotlib.org/api/pyplot_api.html)
 * [SciKit-Learn](http://scikit-learn.org/)
 * [keras](http://keras.io)
+* moviepy
+* tqdm
