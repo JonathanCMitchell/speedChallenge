@@ -24,8 +24,7 @@ TEST_IMG_PATH = './test/test_IMG/'
 DRIVE_TEST_CSV_PATH = './test/driving_test.csv'
 TEST_PREDICT_PATH = './test/test_predict/'
 
-# WEIGHTS = 'model-weights-F5.h5' # this one is less overfit but performs 10% worse
-WEIGHTS = 'model-weights-F4.h5' # this one performs better and hopefully isn't overfit
+WEIGHTS = 'model-weights-F5.h5'
 EVAL_SAMPLE_SIZE = 100 # Number of samples to evaluate to compute MSE
 
 with open(TEST_GROUND_TRUTH_JSON_PATH) as json_data:
