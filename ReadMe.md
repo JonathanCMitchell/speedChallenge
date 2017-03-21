@@ -20,6 +20,7 @@ alt="Watch Video Here" width="480" height="180" border="10" /></a>
 <a href="http://www.youtube.com/embed/vNRCwtx01og
 " target="_blank"><img src="http://img.youtube.com/vi/vNRCwtx01og/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
+![Mean Squared Error for M5(8 epochs)](https://github.com/JonathanCMitchell/speedChallenge/blob/master/rgbm5_8epoch.png)
 
 ### Method 2: 16 epoch train, (weight = `model-weights-RGBM3.h5`) no sparse overlay video
 * MSE: ~1.24 on random 1000 sample set
