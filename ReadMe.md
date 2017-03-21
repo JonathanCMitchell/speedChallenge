@@ -18,7 +18,7 @@ to see the network model and all its intricacies
 
 3) DeepFlow: Large displacement optical flow with deep matching [link](http://www.cv-foundation.org/openaccess/content_iccv_2013/papers/Weinzaepfel_DeepFlow_Large_Displacement_2013_ICCV_paper.pdf)
 * I considered using DeepFlow but I found out about it literally the day before the project was due
-4) Dense Optical Flow network feeding. 
+4) <strong>Dense Optical Flow network feeding. (FINAL PICK)</strong>
 
 
 ### To run the jupyter notebooks (how I did it)
@@ -26,12 +26,6 @@ Step1: Run VideoToDatasetAcquisition.ipynb in an ipython notebook. Just shift cl
 
 Step2: Run `NvidiaModel-OpticalFlowDenseM2_8Epoch.ipynb` to build the Nvidia model
 * At the end of the file you will create a predict folder that holds the images with predictions overlayed on top of them. Then if you shift click through it you will create a video and then you can watch that video in the ipython notebook.
-
-## Sparse Optical Flow Overlay (I had way too much fun with this) (This was on a worse performing network model)
-This is using the Lucas-Kanade method for sparse optical flow analysis. The optical flow patterns are not inserted into the neural network for this exampe. 
-<a href="http://www.youtube.com/embed/2XOGCPJy3Rg
-" target="_blank"><img src="http://img.youtube.com/vi/2XOGCPJy3Rg/0.jpg" 
-alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
 Implement Dense optical flow analysis, get optical flow per each pixel. as seen in [this example](http://docs.opencv.org/3.1.0/d7/d8b/tutorial_py_lucas_kanade.html)
 
@@ -74,7 +68,8 @@ alt="Watch Video Here" width="480" height="180" border="10" /></a>
 " target="_blank"><img src="http://img.youtube.com/vi/4mDY_DlIu5g/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
-### Method 2: 16 epoch train, (weight = `model-weights-RGBM3.h5`), sparse overlay videl
+### Method 2: 16 epoch train, (weight = `model-weights-RGBM3.h5`), sparse overlay video
+This is using the Lucas-Kanade method for sparse optical flow analysis. The optical flow patterns are not inserted into the neural network for this example. 
 <a href="http://www.youtube.com/embed/1wveGc-lc9Q
 " target="_blank"><img src="http://img.youtube.com/vi/1wveGc-lc9Q/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
