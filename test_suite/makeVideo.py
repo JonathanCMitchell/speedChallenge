@@ -10,7 +10,7 @@ DRIVE_TEST_CSV_PATH = './test/driving_test.csv'
 TEST_PREDICT_PATH = './test/test_predict/'
 
 
-WEIGHTS = 'model-weights-F5.h5'
+WEIGHTS = 'model-weights-RGBM4.h5' # I got an MSE of ~1.25 on this one, but that may be overfit
 EVAL_SAMPLE_SIZE = 100 # Number of samples to evaluate to compute MSE
 
 
@@ -29,6 +29,7 @@ def preprocess_image_valid_from_path(image_path, speed):
     return img, speed
 
 from model import nvidia_model
+from opticalHelpers import opticalFlowDenseDim3
 from keras.models import Sequential
 from keras.layers.convolutional import Convolution2D
 from keras.layers.pooling import MaxPooling2D
@@ -52,7 +53,6 @@ for idx in tqdm(range(1, len(data) - 1)):
     row_next = data.iloc[[idx + 1]].reset_index()
 
     # Find the 3 respective times to determine frame order (current -> next)
-
     time_now = row_now['time'].values[0]
     time_prev = row_prev['time'].values[0]
     time_next = row_next['time'].values[0]
@@ -70,7 +70,7 @@ for idx in tqdm(range(1, len(data) - 1)):
     x1, y1 = preprocess_image_valid_from_path(row1['image_path'].values[0], row1['speed'].values[0])
     x2, y2 = preprocess_image_valid_from_path(row2['image_path'].values[0], row2['speed'].values[0])
 
-    img_diff = x1 - x2
+    img_diff = opticalFlowDenseDim3(x1, x2)
     img_diff_reshaped = img_diff.reshape(1, img_diff.shape[0], img_diff.shape[1], img_diff.shape[2])
     prediction = model.predict(img_diff_reshaped)
     error = abs(prediction - y2)
@@ -106,7 +106,7 @@ import os
 
 images = [TEST_PREDICT_PATH + str(i+1) + '.jpg' for i in range(0, COUNT - 1)]
 clip = ImageSequenceClip(images, fps=13)
-clip.write_videofile("movie.mp4", fps = 13)
+clip.write_videofile("movie-dense-optflow-m4.mp4", fps = 13)
 print('done creating video')
 
 
