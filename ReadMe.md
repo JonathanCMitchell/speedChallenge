@@ -37,7 +37,7 @@ alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
 # TRAIN:
 * `VideoToDatasetAcquisition` (This is what I used to write the ground truth data to a dataframe and store my images separately, this helped with testing)
-* `NvidiaModel-OpticalFlowDenseM2_8Epoch.ipynb` (this is how I trained the model and demonstrated the MSE, I also processed the dataset into a video which is shown in HTML inline, notes on how I did certain things are in here)
+* `NvidiaModel-OptFlowDense-Final.ipynb` (this is how I trained the model and demonstrated the MSE, I also processed the dataset into a video which is shown in HTML inline, notes on how I did certain things are in here)
 
 
 # TEST: (also found in test_suite.zip)
