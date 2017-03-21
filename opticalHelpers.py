@@ -44,9 +44,58 @@ def opticalFlowOverlay(image_current, image_next):
     dst = cv2.add(image_next, image_next_fg)
     return dst
 
+def opticalFlowDenseDim3(image_current, image_next):
+    """
+    input: image_current, image_next (RGB images)
+    output: flow_direction + magnitude + original image saturation as (R,G,B) image
+    """    
+    gray_current = cv2.cvtColor(image_current, cv2.COLOR_RGB2GRAY)
+    gray_next = cv2.cvtColor(image_next, cv2.COLOR_RGB2GRAY)
+    
+    hsv = np.zeros((66, 220, 3))
+
+    # set HSV's Saturation value to the original image's saturation value
+    hsv_next = cv2.cvtColor(image_next, cv2.COLOR_RGB2HSV)
+    hsv[:,:,1] = hsv_next[:,:,1]
+ 
+    # Flow Parameters
+    flow_mat = None
+    image_scale = 0.5
+    nb_images = 1
+    win_size = 15
+    nb_iterations = 2
+    deg_expansion = 5
+    STD = 1.3 # 1.3
+    extra = 0
+
+    # obtain dense optical flow paramters
+    flow = cv2.calcOpticalFlowFarneback(gray_current, gray_next,  
+                                        flow_mat, 
+                                        image_scale, 
+                                        nb_images, 
+                                        win_size, 
+                                        nb_iterations, 
+                                        deg_expansion, 
+                                        STD, 
+                                        0)
+                                        
+        
+    # convert from cartesian to polar
+    mag, ang = cv2.cartToPolar(flow[..., 0], flow[..., 1])  
+
+    # hue corresponds to direction
+    hsv[:,:,0] = ang * (180 / np.pi / 2)
+
+    # value corresponds to magnitude
+    hsv[:,:,2] = cv2.normalize(mag,None,0,255,cv2.NORM_MINMAX)
+    
+    hsv = np.asarray(hsv, dtype = np.float32)
+    # convert back to RGB
+    rgb_flow = cv2.cvtColor(hsv, cv2.COLOR_HSV2RGB)
+    return rgb_flow
 
 
-def opticalFlowDense(image_current, image_next):
+def opticalFlowDenseDim5(image_current, image_next):
     """
     input: image_current, image_next (RGB images)
     output: image_difference as data (R,G,B,A,M)

@@ -24,7 +24,8 @@ TEST_IMG_PATH = './test/test_IMG/'
 DRIVE_TEST_CSV_PATH = './test/driving_test.csv'
 TEST_PREDICT_PATH = './test/test_predict/'
 
-WEIGHTS = 'model-weights-F5.h5'
+# WEIGHTS = 'model-weights-F5.h5' # this one is less overfit but performs 10% worse
+WEIGHTS = 'model-weights-RGBM4.h5' # this one performs better and hopefully isn't overfit
 EVAL_SAMPLE_SIZE = 100 # Number of samples to evaluate to compute MSE
 
 with open(TEST_GROUND_TRUTH_JSON_PATH) as json_data:
@@ -81,6 +82,7 @@ def preprocess_image_valid_from_path(image_path, speed):
 
 
 from model import nvidia_model
+from opticalHelpers import opticalFlowDenseDim3
 from keras.models import Sequential
 from keras.layers.convolutional import Convolution2D
 from keras.layers.pooling import MaxPooling2D
@@ -128,7 +130,7 @@ for idx in indices:
 
     x1, y1 = preprocess_image_valid_from_path(row1['image_path'].values[0], row1['speed'].values[0])
     x2, y2 = preprocess_image_valid_from_path(row2['image_path'].values[0], row2['speed'].values[0])
-    img_diff = x1 - x2
+    img_diff = opticalFlowDenseDim3(x1, x2)
     img_diff_reshaped = img_diff.reshape(1, img_diff.shape[0], img_diff.shape[1], img_diff.shape[2])
     prediction = model.predict(img_diff_reshaped)
     errors.append(np.square(abs(prediction - y2)))
@@ -136,8 +138,6 @@ for idx in indices:
 MSE = np.mean(errors)
 print('MSE: ', MSE)
 
-
-# save prediction to pickle file
 
 
 
