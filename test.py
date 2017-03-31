@@ -25,44 +25,39 @@ DRIVE_TEST_CSV_PATH = './test/driving_test.csv'
 TEST_PREDICT_PATH = './test/test_predict/'
 
 # WEIGHTS = 'model-weights-F5.h5' # this one is less overfit but performs 10% worse
-WEIGHTS = 'model-weights-RGBM4.h5' # this one performs better and hopefully isn't overfit
+WEIGHTS = 'model-weights-D4.h5' # this one performs better and hopefully isn't overfit
 EVAL_SAMPLE_SIZE = 100 # Number of samples to evaluate to compute MSE
 
 with open(TEST_GROUND_TRUTH_JSON_PATH) as json_data:
     ground_truth = json.load(json_data)
     # json_data.close()
 
-# write image_paths, time, and speed to .csv file
+
+from moviepy.editor import VideoFileClip
+clip1 = VideoFileClip(VIDEO_PATH)
+
 with open(DRIVE_TEST_CSV_PATH, 'w') as csvfile:
     fieldnames = ['image_path', 'time', 'speed']
     writer = csv.DictWriter(csvfile, fieldnames = fieldnames)
     writer.writeheader()
     
-
-    vidcap = cv2.VideoCapture(VIDEO_PATH)
+#     vidcap = cv2.VideoCapture('./data/drive.mp4')
+    
+#     clip1 = VideoFileClip('./data/drive.mp4')
 
     for idx, item in enumerate(ground_truth):
         
         
-        
-        # set video capture to specific time frame
-        # multiply time given in ground truth by 1000 to convert to milliseconds
-        vidcap.set(cv2.CAP_PROP_POS_MSEC, item[0] * 1000)
-        
-        # read in the image
-        success, image = vidcap.read()
-    
-        if success:
-            image_path = os.path.join(TEST_IMG_PATH, str(item[0]) + '.jpg')
-            
-            # save image to IMG folder
-            cv2.imwrite(image_path, image)
-            
-            # write row to driving.csv
-            writer.writerow({'image_path': image_path, 
-                     'time':item[0],
-                     'speed':item[1],
-                    })
+        image_path = os.path.join(TEST_IMG_PATH, str(item[0]) + '.jpg')
+        clip1.save_frame(image_path, t = item[0])
+
+
+
+        # write row to driving.csv
+        writer.writerow({'image_path': image_path, 
+                 'time':item[0],
+                 'speed':item[1],
+                })
 print('done writing to driving_test.csv and test_IMG folder')
 
 
