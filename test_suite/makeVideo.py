@@ -9,7 +9,7 @@ TEST_IMG_PATH = './test/test_IMG/'
 DRIVE_TEST_CSV_PATH = './test/driving_test.csv'
 TEST_PREDICT_PATH = './test/test_predict/'
 
-WEIGHTS = 'model-weights-Vtest.h5'
+WEIGHTS = 'model-weights-Vtest2.h5'
 EVAL_SAMPLE_SIZE = 100 # Number of samples to evaluate to compute MSE
 
 
