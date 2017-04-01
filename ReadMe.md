@@ -21,7 +21,7 @@ alt="Watch Video Here" width="480" height="180" border="10" /></a>
 " target="_blank"><img src="http://img.youtube.com/vi/wu8Q8JkDLtI/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
-![Mean Squared Error for v2(15 epochs)](https://github.com/JonathanCMitchell/speedChallenge/blob/master/model-vtest-2-loss.png')
+![Mean Squared Error for v2(15 epochs)](https://github.com/JonathanCMitchell/speedChallenge/blob/master/model-vtest-2-loss.png)
 
 
 
