@@ -25,39 +25,38 @@ DRIVE_TEST_CSV_PATH = './test/driving_test.csv'
 TEST_PREDICT_PATH = './test/test_predict/'
 
 # WEIGHTS = 'model-weights-F5.h5' # this one is less overfit but performs 10% worse
-WEIGHTS = 'model-weights-L2.h5' # this one performs better and hopefully isn't overfit
+WEIGHTS = 'model-weights-Vtest.h5'
 EVAL_SAMPLE_SIZE = 100 # Number of samples to evaluate to compute MSE
 
 with open(TEST_GROUND_TRUTH_JSON_PATH) as json_data:
     ground_truth = json.load(json_data)
     # json_data.close()
-
-
-from moviepy.editor import VideoFileClip
-clip1 = VideoFileClip(VIDEO_PATH)
-
 with open(DRIVE_TEST_CSV_PATH, 'w') as csvfile:
     fieldnames = ['image_path', 'time', 'speed']
     writer = csv.DictWriter(csvfile, fieldnames = fieldnames)
     writer.writeheader()
     
-#     vidcap = cv2.VideoCapture('./data/drive.mp4')
-    
-#     clip1 = VideoFileClip('./data/drive.mp4')
+    cap = cv2.VideoCapture(VIDEO_PATH)
+    cap.set(cv2.CAP_PROP_FRAME_COUNT, len(ground_truth))
+#     cap.set(cv2.CAP_PROP_FPS, 11.7552) #11.7552
+
 
     for idx, item in enumerate(ground_truth):
         
-        
-        image_path = os.path.join(TEST_IMG_PATH, str(item[0]) + '.jpg')
-        clip1.save_frame(image_path, t = item[0])
-
-
-
-        # write row to driving.csv
-        writer.writerow({'image_path': image_path, 
-                 'time':item[0],
-                 'speed':item[1],
-                })
+        cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
+        # read in the image
+        success, image = cap.read()
+        if success:
+            image_path = os.path.join(TEST_IMG_PATH, str(item[0]) + '.jpg')
+            
+            # save image to IMG folder
+            cv2.imwrite(image_path, image)
+            
+            # write row to driving.csv
+            writer.writerow({'image_path': image_path, 
+                     'time':item[0],
+                     'speed':item[1],
+                    })
 print('done writing to driving_test.csv and test_IMG folder')
 
 

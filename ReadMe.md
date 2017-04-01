@@ -14,12 +14,14 @@ Given ground_truth data in drive.json with [time, speed] wrapped in an array
 " target="_blank"><img src="http://img.youtube.com/vi/1hbSINIGF3g/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
-### Method 2: 8 epoch train,(weight = `model-weights-Vtest2.h5`) sparse overlay video
-* MSE: ~10
-<a href="http://www.youtube.com/embed/vNRCwtx01og
-" target="_blank"><img src="http://img.youtube.com/vi/vNRCwtx01og/0.jpg" 
+### Method 2: 15 epoch train,(weight = `model-weights-Vtest2.h5`) sparse overlay video
+* MSE: ~5.6
+
+<a href="http://www.youtube.com/embed/wu8Q8JkDLtI
+" target="_blank"><img src="http://img.youtube.com/vi/wu8Q8JkDLtI/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
-![Mean Squared Error for M5(8 epochs)](https://github.com/JonathanCMitchell/speedChallenge/blob/master/rgbm5_8epoch.png)
+
+![Mean Squared Error for v2(15 epochs)](https://github.com/JonathanCMitchell/speedChallenge/blob/master/model-vtest-2-loss.png')
 
 ### Method 2: 16 epoch train, (weight = `model-weights-RGBM3.h5`) no sparse overlay video
 * MSE: ~1.24 on random 1000 sample set
@@ -28,14 +30,9 @@ alt="Watch Video Here" width="480" height="180" border="10" /></a>
 " target="_blank"><img src="http://img.youtube.com/vi/4mDY_DlIu5g/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
-### Method 2: 16 epoch train, (weight = `model-weights-RGBM3.h5`), sparse overlay video
-This is using the Lucas-Kanade method for sparse optical flow analysis. The optical flow patterns are not inserted into the neural network for this example. 
-<a href="http://www.youtube.com/embed/1wveGc-lc9Q
-" target="_blank"><img src="http://img.youtube.com/vi/1wveGc-lc9Q/0.jpg" 
-alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
 # TRAIN:
-* `VideoToDatasetAcquisition` (This is what I used to write the ground truth data to a dataframe and store my images separately, this helped with testing)
+* `VideoToDatasetAcquisitionFinal` (This is what I used to write the ground truth data to a dataframe and store my images separately, this helped with testing)
 * `NvidiaModel-OpticalFlowDenseM2_8Epoch.ipynb` (this is how I trained the model and demonstrated the MSE, I also processed the dataset into a video which is shown in HTML inline, notes on how I did certain things are in here)
 
 
@@ -43,9 +40,8 @@ alt="Watch Video Here" width="480" height="180" border="10" /></a>
 * test.py
 * model.py
 * opticalHelpers.py
-* model-weights-RGBM5.h5 (trained on 7 epochs, MSE ~ 10) 
-* model-weights-RGBM4.h5 (trained on 8 epochs, MSE ~ 10) (preloaded)
-* model-weights-RGBM3.h5 (trained on 16 epochs, MSE~2)
+* model-weights-Vtest.h5 (trained on 10 epochs, MSE ~ 10) 
+* model-weights-Vtest2.h5 (trained on 15 epochs, MSE ~ 5.6) (preloaded)
 * setupstuff.sh
 
 To test the model:
