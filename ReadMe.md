@@ -23,17 +23,11 @@ alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
 ![Mean Squared Error for v2(15 epochs)](https://github.com/JonathanCMitchell/speedChallenge/blob/master/model-vtest-2-loss.png')
 
-### Method 2: 16 epoch train, (weight = `model-weights-RGBM3.h5`) no sparse overlay video
-* MSE: ~1.24 on random 1000 sample set
-
-<a href="http://www.youtube.com/embed/4mDY_DlIu5g
-" target="_blank"><img src="http://img.youtube.com/vi/4mDY_DlIu5g/0.jpg" 
-alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
 
 # TRAIN:
-* `VideoToDatasetAcquisitionFinal` (This is what I used to write the ground truth data to a dataframe and store my images separately, this helped with testing)
-* `NvidiaModel-OpticalFlowDenseM2_8Epoch.ipynb` (this is how I trained the model and demonstrated the MSE, I also processed the dataset into a video which is shown in HTML inline, notes on how I did certain things are in here)
+* `VideoToDataset.ipynb` (This is what I used to write the ground truth data to a dataframe and store my images separately, this helped with testing)
+* `NvidiaModel-OpticalFlowDense_kerasnew.ipynb` (this is how I trained the model and demonstrated the MSE, I also processed the dataset into a video which is shown in HTML inline, notes on how I did certain things are in here)
 
 
 # TEST: (also found in test_suite.zip)

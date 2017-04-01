@@ -16,7 +16,6 @@ model-weights-F2.h5
 SaveSequenceToVideo.ipynb
 NvidiaModel-OpticalFlow.ipynb
 NvidiaModel-OpticalFlow2.ipynb
-Untitled*
 *.mp4
 /old_weights/
 NvidiaModel-OpticalFlow2.ipynb
