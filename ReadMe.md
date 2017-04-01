@@ -1,11 +1,8 @@
 Given: data/drive.mp4
 8616 frames in data/IMG
 each frame is 640(w) x 840(h) x 3 (RGB)
+Given ground_truth data in drive.json with [time, speed] for each of the 8616 frames.
 
-created drivinglog.csv with ['image_path', 'time', 'speed'] columns
-
-Given ground_truth data in drive.json with [time, speed] wrapped in an array
-<strong>Note: At around 2min52s when the car is on the freeway, (172 seconds in) the ground truth data declared the speed to be zero or near zero. I am unsure why this occurs in the dataset, but that is the reason why the speed is declared to be 0 at that point. Later on, around 4min 32s in (272s) the ground truth labels say the speed is ~29. The program learns both of these speeds. </strong> So I am not sure what the speedometer will have for the test_freeway data.
 
 ### Method 2: 10 epoch train, (weight = `model-weights-vtest.h5`)sparse overlay video
 * MSE: ~9
@@ -47,9 +44,6 @@ feel free to delete the ./data/predict folder after step 4
 * Requires moviepy
 
 
-model-weights-RGBM3 seems to be the best predictor, it's super easy to swap between them to see which you like the best. to swap change line 28 on test.py, and line13 on makeVideo.py to the desired weight. 
-
-
 <strong>Dense Optical Flow network feeding.</strong>
 
 ### Strategies:
@@ -59,7 +53,6 @@ In NvidiaModel-OpticalFlowDense I changed up my generator to yield (66, 220, 5) 
 
 * Method 2: Convert optical flow angles and magnitude HSV to RGB and pass that into the network as (66, 220, 3) RGB values. 
 
-Method 2 outperforms Method 1 by a lot. Method 2 providede MSE values of ~5.6, while Method 1 led to values ~30.
 
 * Hyperparameter selection:
 I trained the model with 400 samples per epoch, with batch sizes of 32. Therefore I sent ~16,000 images into the generator, resulting in 8k optical flow differentials. I also used an adam optimizer, and ELU activation functions because they lead to convergence faster!
