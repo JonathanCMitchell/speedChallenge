@@ -59,9 +59,12 @@ In NvidiaModel-OpticalFlowDense I changed up my generator to yield (66, 220, 5) 
 
 * Method 2: Convert optical flow angles and magnitude HSV to RGB and pass that into the network as (66, 220, 3) RGB values. 
 
-* I trained this network model a few times, I started out with 12 epochs and I got an MSE on validation data ~7. I may have overfit the data though so I went back to ~8 epochs to an MSE or ~10 just to play it safe. Overfitting would be a disaster. 
+Method 2 outperforms Method 1 by a lot. Method 2 providede MSE values of ~5.6, while Method 1 led to values ~30.
 
-Method 2 rocks!! my MSE on validation was ~12 after 6 epochs of 20480 samples. Meaning I sent (12 * 2480 * 16) = 470k images into the network and my MSE dropped from 46.4 to 8.72. Compared to the other methods I was performing like Method 1 which dropped from 82.5996 MSE to 37.1 MSE with the same settings. Method 2 was the answer. I guess there was just too much noise when doing a simple image_1 (RGB) - image_2 (RGB). The network model held up because I converted the optical flow parameters to an RGB image. Here is a video of the results. 
+* Hyperparameter selection:
+I trained the model with 400 samples per epoch, with batch sizes of 32. Therefore I sent ~16,000 images into the generator, resulting in 8k optical flow differentials. I also used an adam optimizer, and ELU activation functions because they lead to convergence faster!
+
+Method 2 rocks!! my MSE on validation was ~12 after 6 epochs of 20480 samples. Meaning I sent (12 * 2480 * 16) = 470k images into the network and my MSE dropped from  to 8.72. Compared to the other methods I was performing like Method 1 which dropped from 82.5996 MSE to 37.1 MSE with the same settings. Method 2 was the answer. I guess there was just too much noise when doing a simple image_1 (RGB) - image_2 (RGB). The network model held up because I converted the optical flow parameters to an RGB image. Here is a video of the results. 
 
 Other approaches: 
 1) Nvidia Model: PilotNet based implementation that compares the differences between both images and sends that through a network and performs regression based on the image differences
