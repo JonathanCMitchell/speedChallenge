@@ -10,7 +10,7 @@ DRIVE_TEST_CSV_PATH = './test/driving_test.csv'
 TEST_PREDICT_PATH = './test/test_predict/'
 
 
-WEIGHTS = 'model-weights-D4.h5'
+WEIGHTS = 'model-weights-L2.h5'
 EVAL_SAMPLE_SIZE = 100 # Number of samples to evaluate to compute MSE
 
 
@@ -106,7 +106,7 @@ import os
 
 images = [TEST_PREDICT_PATH + str(i+1) + '.jpg' for i in range(0, COUNT - 1)]
 clip = ImageSequenceClip(images, fps=11.7552)
-clip.write_videofile("movie-D4.mp4", fps = 11.7552)
+clip.write_videofile("movie-L2.mp4", fps = 11.7552)
 print('done creating video')
 
 

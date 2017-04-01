@@ -7,16 +7,15 @@ created drivinglog.csv with ['image_path', 'time', 'speed'] columns
 Given ground_truth data in drive.json with [time, speed] wrapped in an array
 <strong>Note: At around 2min52s when the car is on the freeway, (172 seconds in) the ground truth data declared the speed to be zero or near zero. I am unsure why this occurs in the dataset, but that is the reason why the speed is declared to be 0 at that point. Later on, around 4min 32s in (272s) the ground truth labels say the speed is ~29. The program learns both of these speeds. </strong> So I am not sure what the speedometer will have for the test_freeway data.
 
-### Method 2: 7 epoch train, (weight = `model-weights-RGBM4.h5`)no sparse overlay video
-* MSE: ~10
+### Method 2: 10 epoch train, (weight = `model-weights-vtest.h5`)sparse overlay video
+* MSE: ~9
 
-<a href="http://www.youtube.com/embed/5PO0Y2eyRk8
-" target="_blank"><img src="http://img.youtube.com/vi/5PO0Y2eyRk8/0.jpg" 
+<a href="http://www.youtube.com/embed/1hbSINIGF3g
+" target="_blank"><img src="http://img.youtube.com/vi/1hbSINIGF3g/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
-### Method 2: 8 epoch train,(weight = `model-weights-RGBM5.h5`) no sparse overlay video
+### Method 2: 8 epoch train,(weight = `model-weights-Vtest2.h5`) sparse overlay video
 * MSE: ~10
-
 <a href="http://www.youtube.com/embed/vNRCwtx01og
 " target="_blank"><img src="http://img.youtube.com/vi/vNRCwtx01og/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
