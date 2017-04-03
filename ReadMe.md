@@ -20,7 +20,7 @@ alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
 ![Mean Squared Error for v2(15 epochs)](https://github.com/JonathanCMitchell/speedChallenge/blob/master/model-vtest-2-loss.png)
 
-
+Check out the [medium article](https://chatbotslife.com/autonomous-vehicle-speed-estimation-from-dashboard-cam-ca96c24120e4)
 
 # TRAIN:
 * `VideoToDataset.ipynb` (This is what I used to write the ground truth data to a dataframe and store my images separately, this helped with testing)
