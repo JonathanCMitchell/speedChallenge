@@ -4,18 +4,9 @@ each frame is 640(w) x 840(h) x 3 (RGB)
 Given ground_truth data in drive.json with [time, speed] for each of the 8616 frames.
 
 
-### Method 2: 10 epoch train, (weight = `model-weights-vtest.h5`)sparse overlay video
-* MSE: ~9
-
-<a href="http://www.youtube.com/embed/1hbSINIGF3g
-" target="_blank"><img src="http://img.youtube.com/vi/1hbSINIGF3g/0.jpg" 
-alt="Watch Video Here" width="480" height="180" border="10" /></a>
-
-### Method 2: 15 epoch train,(weight = `model-weights-Vtest2.h5`) sparse overlay video
-* MSE: ~5.6
-
-<a href="http://www.youtube.com/embed/wu8Q8JkDLtI
-" target="_blank"><img src="http://img.youtube.com/vi/wu8Q8JkDLtI/0.jpg" 
+### Method 2: 15 epoch train,(weight = `model-weights-Vtest2.h5`). MSE: ~5.6
+<a href="http://www.youtube.com/embed/1QjPMWIpJ7I
+" target="_blank"><img src="http://img.youtube.com/vi/1QjPMWIpJ7I/0.jpg" 
 alt="Watch Video Here" width="480" height="180" border="10" /></a>
 
 ![Mean Squared Error for v2(15 epochs)](https://github.com/JonathanCMitchell/speedChallenge/blob/master/model-vtest-2-loss.png)
