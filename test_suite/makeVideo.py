@@ -9,7 +9,7 @@ TEST_IMG_PATH = './test/test_IMG/'
 DRIVE_TEST_CSV_PATH = './test/driving_test.csv'
 TEST_PREDICT_PATH = './test/test_predict/'
 
-WEIGHTS = 'model-weights-Vtest.h5'
+WEIGHTS = 'model-weights-Vtest2.h5'
 EVAL_SAMPLE_SIZE = 100 # Number of samples to evaluate to compute MSE
 
 
@@ -67,6 +67,10 @@ for idx in tqdm(range(1, len(data) - 1)):
         row1 = row_now
         row2 = row_next
 
+    img_2 = cv2.imread(row2['image_path'].values[0])
+    high_res_2 = np.copy(img_2)
+    high_res_2 = cv2.cvtColor(high_res_2, cv2.COLOR_BGR2RGB)
+
     x1, y1 = preprocess_image_valid_from_path(row1['image_path'].values[0], row1['speed'].values[0])
     x2, y2 = preprocess_image_valid_from_path(row2['image_path'].values[0], row2['speed'].values[0])
 
@@ -82,13 +86,13 @@ for idx in tqdm(range(1, len(data) - 1)):
 
                                    
     # Make a copy 
-    x2_copy = np.copy(x2)
+    x2_copy = high_res_2
     
     # to write new image via openCV
     offset = 30
     font = cv2.FONT_HERSHEY_SIMPLEX
     x2_copy = cv2.resize(x2_copy, (640, 480), interpolation = cv2.INTER_AREA)
-    cv2.putText(x2_copy,'pred: ' + str(prediction[0][0])[:5],(5,offset), font, 1,(0,0,0),1,cv2.LINE_AA)
+    cv2.putText(x2_copy,'pred: ' + str(prediction[0][0])[:5],(5,offset), font, 1,(66,220,224),1,cv2.LINE_AA)
     cv2.putText(x2_copy,'truth: ' + str(y2)[:5],(5,offset * 2), font, 1,(0,20,255),1,cv2.LINE_AA)
     cv2.putText(x2_copy, 'error: ' + str(error[0][0])[:5], (5, offset*3),font, 1, (255, 0, 0),1, cv2.LINE_AA)
     
@@ -106,7 +110,7 @@ import os
 
 images = [TEST_PREDICT_PATH + str(i+1) + '.jpg' for i in range(0, COUNT - 1)]
 clip = ImageSequenceClip(images, fps=11.7552)
-clip.write_videofile("movie-vTest.mp4", fps = 11.7552)
+clip.write_videofile("movie-vTest2.mp4", fps = 11.7552)
 print('done creating video')
 
 

@@ -4,7 +4,7 @@
 /node_modules/
 *.jpg
 *.ipynb_checkpoints
-
+*.mp4
 __pycache__
 CustomLayers.py
 batch_shuffle.ipynb
@@ -16,7 +16,7 @@ model-weights-F2.h5
 SaveSequenceToVideo.ipynb
 NvidiaModel-OpticalFlow.ipynb
 NvidiaModel-OpticalFlow2.ipynb
-*.mp4
+movie*.mp4
 /old_weights/
 NvidiaModel-OpticalFlow2.ipynb
 NvidiaModel-OpticalFlow.ipynb
