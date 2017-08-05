@@ -1,3 +1,9 @@
+model-weights-Vtestsat.h5
+model-weights-Vtest.h5
+NvidiaModel-OpticalFlowDense_kerasnew-sat.ipynb
+NvidiaModel-OpticalFlowDenseOnLarge.ipynb
+NvidiaModel-OpticalFlowSparse-Copy1.ipynb
+
 /data/
 /Papers/
 /FlowNet/
